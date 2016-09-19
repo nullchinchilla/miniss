@@ -54,10 +54,10 @@ func newSocket(plain net.Conn, lisk, lesk natrium.ECDHPrivate, ripk, repk natriu
 		remEpk:  repk,
 	}
 	// check that everything went well
-	go func() {
+	/*go func() {
 		sok.Write(make([]byte, 16))
 	}()
-	_, err = sok.Read(make([]byte, 16))
+	_, err = sok.Read(make([]byte, 16))*/
 	return
 }
 
@@ -106,8 +106,8 @@ func (sk *Socket) Read(p []byte) (n int, err error) {
 	}
 	// copy the data into the buffer
 	n = copy(p, data)
-	if n < len(p) {
-		sk.rxbuf.Write(p[n:])
+	if n < len(data) {
+		sk.rxbuf.Write(data[n:])
 	}
 	return
 }
